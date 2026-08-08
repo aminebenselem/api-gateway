@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/aminebenselem/api-gateway/internal/config"
+	"github.com/aminebenselem/api-gateway/internal/router"
 )
 
 func main() {
@@ -13,10 +14,11 @@ func main() {
 		log.Fatal(err)
 	}
 
-	_ = routesCfg // we'll use this next
+	r := router.New(routesCfg)
 
 	server := &http.Server{
-		Addr: ":" + gatewayCfg.Port,
+		Addr:    ":" + gatewayCfg.Port,
+		Handler: r,
 	}
 
 	log.Printf("Gateway listening on :%s", gatewayCfg.Port)
