@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "path": "/orders",
+      "targets": [
+        "http://orders-1:8080",
+        "http://orders-2:8080",
+        "http://orders-3:8080"
+      ]
+    }
+  ]
+}

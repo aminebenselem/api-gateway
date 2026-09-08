@@ -1,0 +1,28 @@
+services:
+
+  gateway:
+    build: ./api-gateway
+    ports:
+      - "8080:8080"
+    environment:
+      PORT: "8080"
+      ROUTES_CONFIG_URI: "/app/configs/routes.json"
+    depends_on:
+      - orders-1
+      - orders-2
+      - orders-3
+
+  orders-1:
+    build: ./orders
+    environment:
+      INSTANCE_NAME: orders-1
+
+  orders-2:
+    build: ./orders
+    environment:
+      INSTANCE_NAME: orders-2
+
+  orders-3:
+    build: ./orders
+    environment:
+      INSTANCE_NAME: orders-3
